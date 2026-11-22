@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b12">
+  <title>SX-F JIX</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{--bg:#080b12;--panel:#101622;--line:rgba(255,255,255,.09);--muted:#8993a5;--white:#f4f6fb;--accent:#a7ff55}
+*{box-sizing:border-box}[hidden]{display:none!important}html{min-height:100%;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--white);font-family:Manrope,Arial,sans-serif;min-height:100vh}button,input{font:inherit}.hidden{display:none!important}.noise{position:fixed;inset:0;pointer-events:none;opacity:.12;z-index:5;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E")}
+.screen{min-height:100vh}.intro-screen{position:relative;overflow:hidden;background:#05070b;display:grid;place-items:center}.intro-video{position:absolute;width:100%;height:100%;object-fit:cover;opacity:.72}.intro-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,7,12,.8),rgba(4,7,12,.15)),linear-gradient(0deg,rgba(4,7,12,.75),transparent 55%)}.intro-caption{position:absolute;left:9%;top:50%;transform:translateY(-50%);z-index:1}.eyebrow{font:500 10px 'DM Mono',monospace;letter-spacing:.24em;color:var(--accent);margin:0 0 15px}.intro-caption h1,.hero h1{font-size:clamp(62px,12vw,142px);letter-spacing:-.09em;line-height:.9;margin:0;font-weight:800}.intro-caption h1 span,.hero h1 span{color:var(--accent)}.intro-caption p{font:11px 'DM Mono',monospace;letter-spacing:.3em;color:#c2c9d5;margin-top:28px}.skip-btn{position:absolute;z-index:2;right:5%;top:5%;background:rgba(10,14,22,.5);border:1px solid rgba(255,255,255,.3);color:white;padding:13px 18px;border-radius:2px;font:11px 'DM Mono',monospace;letter-spacing:.12em;cursor:pointer;backdrop-filter:blur(12px)}.skip-btn span{color:var(--accent);margin-left:12px}.intro-progress{position:absolute;bottom:0;left:0;width:100%;height:3px;background:#ffffff22}.intro-progress span{display:block;width:0;height:100%;background:var(--accent)}
+.login-screen{display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 10%,#1c2a34 0,transparent 48%),var(--bg)}.login-card{width:min(100%,420px);padding:42px;background:rgba(16,22,34,.9);border:1px solid var(--line);box-shadow:0 25px 90px #0008}.brand-mark{font-size:24px;font-weight:800;letter-spacing:-2px;margin-bottom:36px}.brand-mark span{color:var(--accent)}.login-card h2{font-size:32px;letter-spacing:-1.5px;margin:0 0 8px}.muted{color:var(--muted);font-size:13px;margin:0 0 32px}.login-card label{display:block;font-size:11px;color:#c8cfdb;margin:18px 0 8px}.login-card input{width:100%;padding:15px 14px;background:#090e17;border:1px solid #273142;color:white;outline:none;border-radius:2px}.login-card input:focus{border-color:var(--accent)}.password-wrap{position:relative}.password-wrap input{padding-right:48px}.eye-btn{position:absolute;right:8px;top:7px;background:none;border:0;color:var(--muted);padding:8px;cursor:pointer}.primary-btn{width:100%;margin-top:22px;padding:16px;background:var(--accent);border:0;color:#10150b;font-weight:800;letter-spacing:.12em;cursor:pointer}.primary-btn span{float:right;font-size:18px;line-height:12px}.error{color:#ff7777;font-size:12px;min-height:15px;margin:9px 0 0}.login-foot{font:10px 'DM Mono',monospace;color:#6f7a8d;letter-spacing:.15em;margin-top:30px}.status-dot,.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px #a7ff5590;margin-right:8px}
+.home-screen{max-width:1440px;margin:auto;padding:0 6.5%}.topbar{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.wordmark{color:white;text-decoration:none;font-size:18px;font-weight:800;letter-spacing:-1px}.wordmark b{color:var(--accent)}.topbar-right{display:flex;align-items:center;font:10px 'DM Mono',monospace;letter-spacing:.13em;color:#9ba5b5}.topbar-right button{margin-left:25px;background:none;border:1px solid var(--line);color:#dce2ec;padding:9px 13px;font:10px 'DM Mono',monospace;cursor:pointer}.hero{height:310px;position:relative;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}.hero-copy{position:relative;z-index:1}.hero h1{font-size:clamp(66px,10vw,112px)}.hero-sub{color:var(--muted);font-size:14px;margin:18px 0 0}.hero-orbit{position:absolute;border:1px solid #a7ff5522;border-radius:50%;width:340px;height:340px;right:12%;top:50%;transform:translateY(-50%)}.orbit-two{width:245px;height:245px;right:calc(12% + 48px);border-color:#a7ff5540}.hero-code{position:absolute;right:0;bottom:26px;color:#536071;font:10px 'DM Mono',monospace;letter-spacing:.2em}.content{padding:42px 0 70px}.section-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}.section-heading h2{font-size:23px;letter-spacing:-.8px;margin:0}.section-index{font:10px 'DM Mono',monospace;color:#667184;letter-spacing:.12em}.video-frame{position:relative;background:#030509;border:1px solid var(--line);padding:10px}.video-frame video{display:block;width:100%;aspect-ratio:16/7;object-fit:contain;background:#030509}.video-label{position:absolute;left:23px;top:22px;background:#080b12bb;padding:8px 10px;font:9px 'DM Mono',monospace;letter-spacing:.13em}.info-heading{margin-top:55px}.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.info-card{min-height:180px;background:var(--panel);border:1px solid var(--line);padding:22px}.card-icon{font-size:20px;color:var(--accent);margin-bottom:20px}.card-label{font:10px 'DM Mono',monospace;letter-spacing:.15em;color:#8792a4;margin:0 0 10px}.info-card h3{font-size:18px;margin:0 0 8px;letter-spacing:-.5px}.card-note,.privacy-note{font-size:11px;color:#758094;margin:0;line-height:1.6}.privacy-note{margin-top:15px}footer{height:65px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;color:#687386;font:9px 'DM Mono',monospace;letter-spacing:.13em}footer span:first-child{color:#b9c2d0}
+@media(max-width:700px){.login-card{padding:30px 24px}.home-screen{padding:0 5%}.topbar{height:64px}.hero{height:250px}.hero-orbit{right:-110px}.orbit-two{right:-62px}.section-heading h2{font-size:20px}.video-frame video{aspect-ratio:16/9}.info-grid{grid-template-columns:1fr}.info-card{min-height:145px}.content{padding-top:32px}.section-index{font-size:8px}footer{font-size:8px}.intro-caption{left:7%}}
+
+
+/* Dashboard upgrade */
+.home-screen{position:relative}
+.topbar{position:sticky;top:0;z-index:4;background:rgba(8,11,18,.88);backdrop-filter:blur(16px)}
+.topbar-right{gap:8px}
+.topbar-right button{border-radius:3px;transition:.2s}
+.topbar-right button:hover{border-color:var(--accent);color:var(--accent)}
+.hero{height:350px;border:1px solid rgba(167,255,85,.13);border-top:0;padding:0 34px;background:radial-gradient(ellipse at 78% 48%,rgba(167,255,85,.10),transparent 38%),linear-gradient(115deg,#101925 0%,#090e17 68%)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,rgba(167,255,85,.035));pointer-events:none}
+.hero-copy{max-width:650px}
+.hero-sub{font-size:14px;letter-spacing:.02em}
+.hero-tag{display:inline-flex;align-items:center;gap:9px;margin-top:25px;padding:10px 13px;border:1px solid #a7ff5533;background:#a7ff550c;color:#d9e8cb;font:10px 'DM Mono',monospace;letter-spacing:.12em}
+.hero-tag i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+.hero-orbit{opacity:.8;box-shadow:0 0 80px #a7ff5508 inset}
+.content{padding-top:38px}
+.video-frame{border-radius:5px;overflow:hidden;background:linear-gradient(135deg,#111b27,#030509);box-shadow:0 18px 55px #0005}
+.video-frame video{border-radius:2px}
+.video-label{border:1px solid #ffffff20;border-radius:2px;backdrop-filter:blur(8px)}
+.info-card{position:relative;overflow:hidden;border-radius:4px;transition:transform .2s,border-color .2s,background .2s}
+.info-card:hover{transform:translateY(-3px);border-color:#a7ff5555;background:#131d2a}
+.info-card:after{content:"";position:absolute;width:90px;height:90px;right:-45px;bottom:-45px;border:1px solid #a7ff551a;border-radius:50%}
+.card-icon{display:grid;place-items:center;width:38px;height:38px;border:1px solid #a7ff5533;border-radius:4px;background:#a7ff550b}
+.tools-section{margin-top:54px}
+.tools-empty{min-height:145px;border:1px dashed #53607166;border-radius:4px;background:linear-gradient(120deg,#101622aa,#0b1019aa);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
+.tools-empty .tool-symbol{font-size:26px;color:var(--accent);margin-bottom:12px}
+.tools-empty strong{font-size:14px;letter-spacing:.08em}
+.tools-empty p{font-size:11px;color:var(--muted);margin:8px 0 0}
+.section-link{color:var(--accent);text-decoration:none;font:10px 'DM Mono',monospace;letter-spacing:.12em}
+@media(max-width:700px){.hero{height:270px;padding:0 18px}.hero-orbit{right:-110px}.orbit-two{right:-62px}.hero-tag{font-size:9px}.tools-empty{min-height:130px}.topbar-right button{margin-left:10px}}
+
+
+/* Separate page navigation */
+.home-screen{padding-bottom:104px}
+.tools-page{min-height:calc(100vh - 190px);padding:70px 0 45px}
+.tools-page-heading{margin-bottom:34px}
+.tools-page-heading h1{font-size:clamp(42px,8vw,76px);letter-spacing:-.075em;line-height:1;margin:0;font-weight:800}
+.tools-page-heading h1 span{color:var(--accent)}
+.tools-page-sub{font-size:13px;color:var(--muted);margin-top:14px}
+.tools-empty{min-height:230px;border:1px dashed #53607188;border-radius:5px;background:radial-gradient(ellipse at 50% 0%,#a7ff550c,transparent 65%),linear-gradient(120deg,#101622,#0b1019);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px}
+.tools-empty .tool-symbol{font-size:32px;color:var(--accent);margin-bottom:14px;width:58px;height:58px;border:1px solid #a7ff5544;border-radius:50%;display:grid;place-items:center}
+.tools-empty strong{font-size:13px;letter-spacing:.12em}
+.tools-empty p{font-size:11px;color:var(--muted);margin:10px 0 0}
+.bottom-nav{position:fixed;z-index:20;left:50%;bottom:0;transform:translateX(-50%);width:min(100%,1440px);padding:12px max(6.5%,24px) calc(12px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr;gap:10px;background:rgba(7,10,16,.94);border-top:1px solid #ffffff18;backdrop-filter:blur(18px)}
+.nav-tab{height:54px;border:1px solid #ffffff14;background:#101622;color:#8490a3;display:flex;align-items:center;justify-content:center;gap:10px;font:10px 'DM Mono',monospace;letter-spacing:.16em;cursor:pointer;transition:.2s}
+.nav-tab-icon{font-size:19px;line-height:1}
+.nav-tab.active{color:var(--accent);border-color:#a7ff5570;background:#a7ff550c;box-shadow:inset 0 0 20px #a7ff5508}
+.nav-tab:active{transform:scale(.98)}
+@media(max-width:700px){.home-screen{padding-bottom:100px}.tools-page{padding-top:48px;min-height:calc(100vh - 150px)}.tools-empty{min-height:190px}.bottom-nav{padding-left:5%;padding-right:5%}}
+
+
+.tools-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tool-card{position:relative;min-height:150px;padding:22px;background:linear-gradient(140deg,#141e2b,#0d131e);border:1px solid var(--line);color:var(--white);text-decoration:none;text-align:left;display:flex;flex-direction:column;align-items:flex-start;gap:9px;cursor:pointer;font:inherit;transition:.2s}
+.tool-card:hover{border-color:#a7ff5570;transform:translateY(-2px);background:#152131}
+.tool-card-icon{width:36px;height:36px;display:grid;place-items:center;border:1px solid #a7ff5544;color:var(--accent);border-radius:4px;font-size:19px}
+.tool-card-name{font:700 12px 'DM Mono',monospace;letter-spacing:.07em}
+.tool-card-desc{font-size:11px;color:var(--muted)}
+.tool-card-arrow{position:absolute;right:18px;top:18px;color:var(--accent)}
+.subpage{margin-top:8px}.subpage h2{font-size:30px;letter-spacing:-1px;margin:0 0 25px}
+.back-button{border:1px solid var(--line);background:#111925;color:var(--accent);padding:11px 14px;margin-bottom:32px;font:10px 'DM Mono',monospace;letter-spacing:.1em}
+.feature-form{max-width:520px;padding:24px;background:#101622;border:1px solid var(--line)}
+.feature-form label{display:block;margin:16px 0 8px;color:#c8cfdb;font-size:11px}
+.feature-form input,.feature-form select{width:100%;padding:14px;background:#090e17;border:1px solid #273142;color:white;border-radius:2px;outline:none}
+.feature-form input:focus,.feature-form select:focus{border-color:var(--accent)}
+.form-notice{font-size:11px;color:#aab4c4;line-height:1.6;margin:14px 0 0}
+.account-list-wrap{max-width:520px;margin-top:30px}.account-list{padding:15px;background:#101622;border:1px solid var(--line);color:var(--muted);font-size:12px}
+.account-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);gap:12px}.account-row:last-child{border-bottom:0}
+.account-row b{color:white}.account-row span{color:var(--accent);font:10px 'DM Mono',monospace}
+.user-identity{display:flex;align-items:center;gap:10px;margin-top:18px}
+.user-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#a7ff5515;border:1px solid #a7ff5570;color:var(--accent);font-weight:800}
+.user-identity b{display:block;font-size:11px;letter-spacing:.08em}.user-identity small{display:block;margin-top:3px;color:var(--accent);font:9px 'DM Mono',monospace;letter-spacing:.12em}
+@media(max-width:600px){.tools-grid{grid-template-columns:1fr}.tool-card{min-height:125px}.feature-form{padding:18px}.tools-page{padding-top:40px}}
+
+
+/* Menu informasi owner */
+#ownerInfoBtn{width:38px;height:38px;border:1px solid var(--line);background:#101622;color:var(--accent);font-size:23px;cursor:pointer;border-radius:3px;margin-left:10px}
+#ownerInfoPanel{position:fixed;z-index:1100;top:82px;right:18px;width:min(340px,calc(100vw - 36px));padding:20px;background:#101622;border:1px solid #a7ff5570;box-shadow:0 18px 60px #000b;color:#dce3ed}
+#ownerInfoPanel.hidden{display:none!important}
+#ownerInfoPanel h3{margin:0 0 14px;color:var(--accent);font:700 13px 'DM Mono',monospace;letter-spacing:.12em}
+#ownerInfoPanel p{margin:10px 0;font-size:12px;line-height:1.55}
+#ownerInfoPanel .owner-close{margin-top:12px;padding:9px 13px;background:#172131;border:1px solid var(--line);color:var(--accent);cursor:pointer}
+
+/* Video B4DAK tampil di tengah layar sebagai overlay */
+#badakVideoWrap{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.88);backdrop-filter:blur(7px);border:0;margin:0!important}
+#badakVideoWrap.hidden{display:none!important}
+#badakVideoWrap video{width:min(92vw,820px)!important;max-height:82vh;aspect-ratio:auto;object-fit:contain;background:#000;border:1px solid #a7ff5570;box-shadow:0 20px 80px #000c}
+</style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <section id="introScreen" class="screen intro-screen">
+    <video id="introVideo" class="intro-video" autoplay muted playsinline>
+      <source src="INTRO.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+    <div class="intro-shade"></div>
+    <div class="intro-caption">
+      <span class="eyebrow">WELCOME TO</span>
+      <h1>SX-F <span>JIX</span></h1>
+      <p>ENTER THE EXPERIENCE</p>
+    </div>
+    <button id="skipIntro" class="skip-btn" type="button">SKIP INTRO <span>↗</span></button>
+    <div class="intro-progress"><span id="introProgress"></span></div>
+  </section>
+
+  <main id="loginScreen" class="screen login-screen hidden">
+    <div class="login-card">
+      <div class="brand-mark">SX<span>F</span></div>
+      <p class="eyebrow">PRIVATE ACCESS</p>
+      <h2>Welcome back.</h2>
+      <p class="muted">Masuk untuk melanjutkan ke SX-F JIX.</p>
+      <form id="loginForm">
+        <label for="username">Nama</label>
+        <input id="username" name="username" type="text" placeholder="Masukkan nama" autocomplete="username" required>
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input id="password" name="password" type="password" placeholder="Masukkan password" autocomplete="current-password" required>
+          <button id="togglePassword" class="eye-btn" type="button" aria-label="Tampilkan password">◉</button>
+        </div>
+        <p id="loginError" class="error" role="alert"></p>
+        <button class="primary-btn" type="submit">LOGIN <span>→</span></button>
+      </form>
+      <div class="login-foot"><span class="status-dot"></span> SECURE AREA</div>
+    </div>
+  </main>
+
+  <main id="homeScreen" class="home-screen hidden">
+    <header class="topbar">
+      <a class="wordmark" href="#" aria-label="SX-F JIX">SX-F <b>JIX</b></a>
+      <div class="topbar-right"><span class="live-dot"></span><span>ONLINE</span><button id="ownerInfoBtn" type="button" aria-expanded="false" aria-controls="ownerInfoPanel" aria-label="Informasi">=</button><button id="logoutBtn" type="button">KELUAR</button></div>
+    </header>
+    <aside id="ownerInfoPanel" class="hidden" aria-label="Informasi owner">
+      <h3>INFORMASI</h3>
+      <p><b>Tt owner:</b> @kranauxmiracle</p>
+      <p><b>Nope owner:</b> +6281947488108</p>
+      <p><b>Sl jaibreak:</b> bukan punya owner</p>
+      <p><b>Web Roblox &amp; top up game:</b> bukan punya gw</p>
+      <p><b>Blast wa:</b> bukan punya owner</p>
+      <p>Tetapi semua web diklaim owner sudah terbukti aman &amp; terpercaya 😁</p>
+      <button class="owner-close" id="ownerInfoClose" type="button">TUTUP</button>
+    </aside>
+
+    <div id="homePage" class="app-page">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR PERSONAL SPACE</p>
+        <h1>SX-F <span>JIX</span></h1>
+        <p class="hero-sub">Satu ruang. Semua pengalaman digital kamu.</p><div class="user-identity"><span class="user-avatar" id="userAvatar">O</span><span><b id="currentUsername">OWNER</b><small id="currentRole">OWNER</small></span></div><div class="hero-tag"><i></i> SYSTEM READY <span>·</span> ACCESS GRANTED</div>
+      </div>
+      <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+      <div class="hero-code">SXJ / 006</div>
+    </section>
+
+    <section class="content">
+      <div class="section-heading"><div><p class="eyebrow">FEATURED VIDEO</p><h2>Video Player</h2></div><span class="section-index">01 / MEDIA</span></div>
+      <div class="video-frame">
+        <video id="mainVideo" controls loop playsinline preload="auto">
+          <source src="2.mp4" type="video/mp4">
+          Browser kamu tidak mendukung video.
+        </video>
+        <div class="video-label"><span class="live-dot"></span> NOW PLAYING</div>
+      </div>
+
+      <div class="section-heading info-heading"><div><p class="eyebrow">DEVICE & LOCATION</p><h2>Info perangkat</h2></div><span class="section-index">02 / STATUS</span></div>
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="card-icon">▣</div><p class="card-label">MEREK HP</p><h3 id="deviceInfo">HP KENTANG SETARA NOKIA BLOON🙄</h3><p class="card-note">Informasi dari browser perangkat</p>
+        </article>
+        <article class="info-card">
+          <div class="card-icon">⌖</div><p class="card-label">LOKASI SEKARANG</p><h3 id="locationInfo">Menunggu izin lokasi</h3><p class="card-note" id="locationNote">Izinkan akses lokasi di browser</p>
+        </article>
+        <article class="info-card weather-card">
+          <div class="card-icon">☼</div><p class="card-label">PREDIKSI CUACA</p><h3 id="weatherInfo">Memuat cuaca...</h3><p class="card-note" id="weatherNote">Berdasarkan lokasi perangkat</p>
+        </article>
+      </div>
+      <p class="privacy-note">Lokasi hanya diambil setelah kamu memberi izin melalui browser.</p>
+    </section>
+    <footer><span>SX-F JIX</span><span>BUILT FOR YOUR SPACE · 2026</span></footer>
+    </div>
+
+    <section id="toolsPage" class="tools-page app-page hidden">
+      <div class="tools-page-heading">
+        <p class="eyebrow">SX-F JIX / EXTENSIONS</p>
+        <h1>TOOLS <span>CENTER</span></h1>
+        <p class="tools-page-sub">Pilih fitur yang ingin kamu buka.</p>
+      </div>
+      <div id="toolsMenu" class="tools-grid">
+        <a class="tool-card" href="https://whatsapp.com/channel/0029Vb9ggBq0wajjaiQFjm42" target="_blank" rel="noopener">
+          <span class="tool-card-icon">◈</span><span class="tool-card-name">SL JAILBREAK ZENKAI</span><span class="tool-card-desc">Buka saluran WhatsApp</span><span class="tool-card-arrow">↗</span>
+        </a>
+        <a class="tool-card" href="https://e46c05678540.cuannnterus2.com/register?ref=60CC50F9" target="_blank" rel="noopener">
+          <span class="tool-card-icon">↗</span><span class="tool-card-name">BLAST WA</span><span class="tool-card-desc">Buka halaman web</span><span class="tool-card-arrow">↗</span>
+        </a>
+        <button class="tool-card" id="openBadak" type="button">
+          <span class="tool-card-icon">⌁</span><span class="tool-card-name">B4DAK W4</span><span class="tool-card-desc">Buka halaman form</span><span class="tool-card-arrow">→</span>
+        </button>
+        <a class="tool-card" href="https://fatx-owner.github.io/Fatx-project/2.html" target="_blank" rel="noopener">
+          <span class="tool-card-icon">⇩</span><span class="tool-card-name">DOWNLOAD VD TT</span><span class="tool-card-desc">Buka halaman download</span><span class="tool-card-arrow">↗</span>
+        </a>
+        <a class="tool-card" href="https://nusa-otp.com/" target="_blank" rel="noopener">
+          <span class="tool-card-icon">⌕</span><span class="tool-card-name">NOKOS WEB</span><span class="tool-card-desc">Buka Nusa OTP</span><span class="tool-card-arrow">↗</span>
+        </a>
+        <a class="tool-card" href="https://engstore.id/" target="_blank" rel="noopener">
+          <span class="tool-card-icon">◆</span><span class="tool-card-name">BUY ROBUX & GAMEPASS</span><span class="tool-card-desc">Roblox store</span><span class="tool-card-arrow">↗</span>
+        </a>
+        <a class="tool-card" href="https://www.vcgamers.com/" target="_blank" rel="noopener">
+          <span class="tool-card-icon">▣</span><span class="tool-card-name">TOP UP GAME</span><span class="tool-card-desc">Buka VCGamers</span><span class="tool-card-arrow">↗</span>
+        </a>
+      </div>
+      <section id="badakPage" class="subpage hidden">
+        <button class="back-button" type="button" data-back-tools>← KEMBALI KE TOOLS</button>
+        <p class="eyebrow">SX-F JIX / FORM</p><h2>B4DAK W4</h2>
+        <form id="badakForm" class="feature-form">
+          <label for="badakNumber">Masukan nomor WA</label>
+          <input id="badakNumber" type="tel" inputmode="tel" placeholder="+62xxxxxxxxxx" required>
+          <label for="badakMethod">Pilih nominal method badak</label>
+          <select id="badakMethod" required>
+            <option value="">Pilih nominal</option><option value="basic">Basic</option><option value="medium">Medium</option><option value="high">High</option>
+          </select>
+          <button class="primary-btn" type="submit">SEND BADAK →</button>
+          <p id="badakNotice" class="form-notice" role="status">Form demo. Fitur pengiriman otomatis atau bombardir pesan tidak tersedia.</p>
+        </form>
+        <div id="badakVideoWrap" class="video-frame hidden" role="dialog" aria-modal="true" aria-label="Video B4DAK">
+          <video id="badakVideo" controls playsinline preload="metadata" style="width:100%;display:block">
+            <source src="3.mp4" type="video/mp4">
+            Browser kamu tidak mendukung video.
+          </video>
+        </div>
+      </section>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Navigasi utama">
+      <button id="homeTab" class="nav-tab active" type="button"><span class="nav-tab-icon">⌂</span><span>UTAMA</span></button>
+      <button id="toolsTab" class="nav-tab" type="button"><span class="nav-tab-icon">✣</span><span>TOOLS</span></button>
+    </nav>
+  </main>
+  <script>
+const introScreen = document.getElementById('introScreen');
+const loginScreen = document.getElementById('loginScreen');
+const homeScreen = document.getElementById('homeScreen');
+const introVideo = document.getElementById('introVideo');
+const skipIntro = document.getElementById('skipIntro');
+const introProgress = document.getElementById('introProgress');
+const mainVideo = document.getElementById('mainVideo');
+const homePage = document.getElementById('homePage');
+const toolsPage = document.getElementById('toolsPage');
+const homeTab = document.getElementById('homeTab');
+const toolsTab = document.getElementById('toolsTab');
+const ownerInfoBtn = document.getElementById('ownerInfoBtn');
+const ownerInfoPanel = document.getElementById('ownerInfoPanel');
+const ownerInfoClose = document.getElementById('ownerInfoClose');
+
+// Kendalikan layar secara terpusat agar login dan halaman utama tidak pernah tampil bersamaan.
+function setMainView(view) {
+  introScreen.hidden = view !== 'intro';
+  loginScreen.hidden = view !== 'login';
+  homeScreen.hidden = view !== 'home';
+  introScreen.classList.toggle('hidden', view !== 'intro');
+  loginScreen.classList.toggle('hidden', view !== 'login');
+  homeScreen.classList.toggle('hidden', view !== 'home');
+}
+// Keadaan awal: hanya intro yang terlihat.
+setMainView('intro');
+ownerInfoBtn.addEventListener('click', () => {
+  const opening = ownerInfoPanel.classList.contains('hidden');
+  ownerInfoPanel.classList.toggle('hidden', !opening);
+  ownerInfoBtn.setAttribute('aria-expanded', String(opening));
+});
+if (ownerInfoClose) ownerInfoClose.addEventListener('click', () => {
+  ownerInfoPanel.classList.add('hidden');
+  ownerInfoBtn.setAttribute('aria-expanded', 'false');
+});
+
+// Pastikan video utama benar-benar diam dan berhenti sebelum login.
+mainVideo.pause();
+mainVideo.muted = true;
+mainVideo.volume = 0;
+
+function showLogin() {
+  setMainView('login');
+}
+skipIntro.addEventListener('click', showLogin);
+introVideo.addEventListener('ended', showLogin);
+introVideo.addEventListener('timeupdate', () => {
+  if (introVideo.duration) {
+    introProgress.style.width = `${(introVideo.currentTime / introVideo.duration) * 100}%`;
+  }
+});
+introVideo.addEventListener('error', () => {
+  // Jika INTRO.mp4 belum tersedia, halaman login tetap bisa dibuka lewat tombol Skip.
+});
+introVideo.muted = true; introVideo.volume = 0; introVideo.play().catch(() => {});
+
+document.getElementById('togglePassword').addEventListener('click', () => {
+  const field = document.getElementById('password');
+  field.type = field.type === 'password' ? 'text' : 'password';
+});
+
+document.getElementById('loginForm').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const name = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value;
+  const error = document.getElementById('loginError');
+
+  // Akun owner tetap khusus; username/password lain masuk sebagai reseller.
+  const isOwnerName = name.toLowerCase() === 'owner';
+  const account = isOwnerName
+    ? (password === '8714' ? {username:'owner', role:'OWNER'} : null)
+    : (name && password ? {username:name, role:'RESELLER'} : null);
+
+  if (account) {
+    error.textContent = '';
+    setMainView('home');
+    document.getElementById('currentUsername').textContent = account.username;
+    document.getElementById('currentRole').textContent = account.role;
+    document.getElementById('userAvatar').textContent = account.username.charAt(0).toUpperCase();
+    // Mulai video 2.mp4 dengan suara dan loop saat masuk halaman utama.
+    mainVideo.pause();
+    mainVideo.currentTime = 0;
+    mainVideo.muted = false;
+    mainVideo.volume = 1;
+    showAppPage('home');
+    mainVideo.play().catch(() => {
+      // Jika browser memblokir autoplay bersuara, pengguna bisa menekan Play pada kontrol video.
+    });
+    detectDevice();
+    getWeatherAndLocation();
+  } else {
+    error.textContent = isOwnerName ? 'Password owner salah.' : 'Login gagal. Isi username dan password.';
+  }
+});
+
+function showAppPage(page) {
+  const isTools = page === 'tools';
+  if (isTools) showToolSubpage('');
+  homePage.classList.toggle('hidden', isTools);
+  toolsPage.classList.toggle('hidden', !isTools);
+  homeTab.classList.toggle('active', !isTools);
+  toolsTab.classList.toggle('active', isTools);
+  homeTab.setAttribute('aria-current', !isTools ? 'page' : 'false');
+  toolsTab.setAttribute('aria-current', isTools ? 'page' : 'false');
+  if (isTools) {
+    mainVideo.pause();
+  } else {
+    // Putar otomatis dengan audio setiap kali halaman utama dibuka.
+    mainVideo.muted = false;
+    mainVideo.volume = 1;
+    mainVideo.play().catch(() => {
+      // Beberapa browser memerlukan interaksi pengguna untuk mengizinkan autoplay bersuara.
+    });
+  }
+}
+
+function showToolSubpage(page) {
+  document.getElementById('toolsMenu').classList.toggle('hidden', !!page);
+  document.getElementById('badakPage').classList.toggle('hidden', page !== 'badak');
+  if (page !== 'badak') {
+    const badakVideo = document.getElementById('badakVideo');
+    badakVideo.pause();
+    badakVideo.currentTime = 0;
+    document.getElementById('badakVideoWrap').classList.add('hidden');
+  }
+  mainVideo.pause();
+}
+document.getElementById('openBadak').addEventListener('click', () => showToolSubpage('badak'));
+document.querySelectorAll('[data-back-tools]').forEach(button => button.addEventListener('click', () => showToolSubpage('')));
+
+document.getElementById('badakForm').addEventListener('submit', event => {
+  event.preventDefault();
+  const numberInput = document.getElementById('badakNumber');
+  const methodInput = document.getElementById('badakMethod');
+  const rawNumber = numberInput.value.trim();
+  const number = rawNumber.replace(/[\s()-]/g, '');
+  const method = methodInput.value;
+  const notice = document.getElementById('badakNotice');
+  const videoWrap = document.getElementById('badakVideoWrap');
+  const video = document.getElementById('badakVideo');
+
+  // Nomor dan nominal wajib diisi setiap kali tombol ditekan.
+  if (!rawNumber) {
+    notice.textContent = 'Nomor WhatsApp wajib diisi.';
+    numberInput.focus();
+    return;
+  }
+  if (!/^\+?62[0-9]{8,13}$/.test(number)) {
+    notice.textContent = 'Nomor harus diawali 62 (boleh +62), lalu 8–13 angka.';
+    numberInput.focus();
+    return;
+  }
+  if (!method) {
+    notice.textContent = 'Pilih nominal terlebih dahulu.';
+    methodInput.focus();
+    return;
+  }
+
+  notice.textContent = 'Form demo berhasil. Video diputar di tengah layar. Pengiriman otomatis/bombardir WhatsApp tidak dijalankan.';
+  video.pause();
+  video.currentTime = 0;
+  video.muted = false;
+  video.volume = 1;
+  videoWrap.classList.remove('hidden');
+  video.play().catch(() => {
+    // Jika autoplay bersuara diblokir browser, pengguna dapat menekan Play.
+  });
+});
+
+// Setelah video selesai, overlay hilang dan siap diputar lagi saat SEND BADAK ditekan.
+document.getElementById('badakVideo').addEventListener('ended', () => {
+  const video = document.getElementById('badakVideo');
+  video.pause();
+  video.currentTime = 0;
+  document.getElementById('badakVideoWrap').classList.add('hidden');
+});
+
+homeTab.addEventListener('click', () => showAppPage('home'));
+toolsTab.addEventListener('click', () => showAppPage('tools'));
+
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  mainVideo.pause();
+  mainVideo.muted = true;
+  mainVideo.volume = 0;
+  mainVideo.currentTime = 0;
+  showAppPage('home');
+  showToolSubpage('');
+  ownerInfoPanel.classList.add('hidden');
+  ownerInfoBtn.setAttribute('aria-expanded', 'false');
+  setMainView('login');
+  document.getElementById('loginForm').reset();
+});
+
+function detectDevice() {
+  document.getElementById("deviceInfo").textContent = "HP KENTANG SETARA NOKIA BLOON🙄";
+}
+
+async function getWeatherAndLocation() {
+  const locationEl = document.getElementById('locationInfo');
+  const locationNote = document.getElementById('locationNote');
+  const weatherEl = document.getElementById('weatherInfo');
+  const weatherNote = document.getElementById('weatherNote');
+
+  if (!navigator.geolocation) {
+    locationEl.textContent = 'Tidak didukung';
+    locationNote.textContent = 'Browser tidak menyediakan GPS';
+    weatherEl.textContent = 'Tidak tersedia';
+    weatherNote.textContent = 'Aktifkan layanan lokasi di perangkat';
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(async ({coords}) => {
+    const {latitude, longitude} = coords;
+    locationEl.textContent = `${latitude.toFixed(3)}, ${longitude.toFixed(3)}`;
+    locationNote.textContent = 'Koordinat lokasi perangkat';
+    try {
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=1`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Weather request failed');
+      const data = await response.json();
+      const current = data.current;
+      const daily = data.daily;
+      weatherEl.textContent = `${Math.round(current.temperature_2m)}°C · ${weatherDescription(current.weather_code)}`;
+      weatherNote.textContent = `Terasa ${Math.round(current.apparent_temperature)}°C · Maks ${Math.round(daily.temperature_2m_max[0])}° / Min ${Math.round(daily.temperature_2m_min[0])}° · Peluang hujan ${daily.precipitation_probability_max[0] ?? '-'}%`;
+    } catch {
+      weatherEl.textContent = 'Gagal memuat';
+      weatherNote.textContent = 'Periksa koneksi internet lalu muat ulang halaman';
+    }
+  }, () => {
+    locationEl.textContent = 'Izin lokasi ditolak';
+    locationNote.textContent = 'Izinkan lokasi untuk melihat cuaca setempat';
+    weatherEl.textContent = 'Lokasi diperlukan';
+    weatherNote.textContent = 'Cuaca ditampilkan setelah akses lokasi diizinkan';
+  }, {enableHighAccuracy: false, timeout: 12000, maximumAge: 300000});
+}
+
+function weatherDescription(code) {
+  if (code === 0) return 'Cerah';
+  if ([1,2,3].includes(code)) return 'Berawan';
+  if ([45,48].includes(code)) return 'Berkabut';
+  if ([51,53,55,56,57].includes(code)) return 'Gerimis';
+  if ([61,63,65,66,67,80,81,82].includes(code)) return 'Hujan';
+  if ([71,73,75,77,85,86].includes(code)) return 'Salju';
+  if ([95,96,99].includes(code)) return 'Badai petir';
+  return 'Cuaca berubah';
+}
+
+</script>
+</body>
+</html>
